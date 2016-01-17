@@ -1,15 +1,14 @@
 package com.rxb.res.service.test;
 
-import javax.annotation.Resource;
-
+import com.rxb.res.entity.User;
+import com.rxb.res.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.rxb.res.entity.User;
-import com.rxb.res.service.UserService;
+import javax.annotation.Resource;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:spring/application.spring.xml")

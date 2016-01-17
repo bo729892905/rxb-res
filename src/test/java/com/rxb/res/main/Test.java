@@ -4,7 +4,7 @@ public class Test {
 
 	public static void main(String[] args) {
 		String originalFilename="Lauterbrunnen, Switzerland.jpg";
-		if(originalFilename.indexOf(".")==-1){
+		if(!originalFilename.contains(".")){
 			System.out.println("名称不合法");
 			return;
 		}

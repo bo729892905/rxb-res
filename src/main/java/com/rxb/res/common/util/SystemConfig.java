@@ -1,12 +1,13 @@
 package com.rxb.res.common.util;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
-
 /**
  * 系统配置
  */
 public class SystemConfig {
 	/** 阿里云accessKeyId */
 	public static String accessKeyId=null;
+	/** 阿里云secretAccessKey */
+	public static String secretAccessKey=null;
+	/** 阿里云endpoint */
+	public static String endpoint=null;
 }

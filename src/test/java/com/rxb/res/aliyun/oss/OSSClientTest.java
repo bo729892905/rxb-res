@@ -1,19 +1,14 @@
 package com.rxb.res.aliyun.oss;
 
+import com.aliyun.oss.ClientConfiguration;
+import com.aliyun.oss.OSSClient;
+import com.aliyun.oss.model.*;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.List;
-
-import com.aliyun.oss.ClientConfiguration;
-import com.aliyun.oss.OSSClient;
-import com.aliyun.oss.model.Bucket;
-import com.aliyun.oss.model.CannedAccessControlList;
-import com.aliyun.oss.model.OSSObjectSummary;
-import com.aliyun.oss.model.ObjectListing;
-import com.aliyun.oss.model.ObjectMetadata;
-import com.aliyun.oss.model.PutObjectResult;
 
 public class OSSClientTest {
 
@@ -49,7 +44,7 @@ public class OSSClientTest {
 		
 		//client.createBucket("renxiaobo");
 		//client.createBucket("rxb");
-		client.setBucketAcl("rxb",CannedAccessControlList.PublicReadWrite);
+		//client.setBucketAcl("rxb",CannedAccessControlList.PublicReadWrite);
 		
 		// 获取用户的Bucket列表
 		List<Bucket> buckets = client.listBuckets();

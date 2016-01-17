@@ -1,8 +1,7 @@
 package com.rxb.res.dao;
 
-import org.springframework.stereotype.Component;
-
 import com.rxb.res.entity.User;
+import org.springframework.stereotype.Component;
 
 @Component
 public interface UserDao {

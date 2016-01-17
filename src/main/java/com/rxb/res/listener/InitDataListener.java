@@ -18,6 +18,8 @@ public class InitDataListener implements InitializingBean {
 
 	public void afterPropertiesSet() throws Exception {
 		SystemConfig.accessKeyId=appProperty.getAccessKeyId();
+		SystemConfig.secretAccessKey=appProperty.getSecretAccessKey();
+		SystemConfig.endpoint=appProperty.getEndpoint();
 	}
 
 }

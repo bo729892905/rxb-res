@@ -3,6 +3,8 @@ package com.rxb.res.dao;
 import com.rxb.res.entity.User;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public interface UserDao {
 
@@ -12,5 +14,11 @@ public interface UserDao {
 	 * @return
      */
 	int insertUser(User user);
+
+	/**
+	 * 获取用户列表
+	 * @return
+     */
+	List<User> getUserList();
 
 }

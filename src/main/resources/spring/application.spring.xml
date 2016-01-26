@@ -79,7 +79,7 @@
 		    /css/*     = anon
 		    /img/*     = anon
 		    /images/*  = anon
-		    
+
 			/login*    = anon
 			/*         = user
 			</value>

@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.rxb.res.dao.UserDao">
+
+	<!-- 新建用户 -->
 	<insert id="insertUser" useGeneratedKeys="true" keyProperty="id" parameterType="com.rxb.res.entity.User">
-		insert into sys_users 
-		(`username`,`password`,`salt`,`locked`) 
+		insert into t_res_user
+		(id,username,password,real_name,gender,mobile_phone,email,salt,locked,register_date)
 		values 
-		(#{username},#{password},#{salt},#{locked})
+		(#{id},#{username},#{password},#{realName},#{gender},#{mobilePhone},#{email},#{salt},#{locked},#{registerDate})
 	</insert>
+
+	<!-- 获取用户列表 -->
+	<select id="getUserList" resultType="com.rxb.res.entity.User">
+		select * from t_res_user
+	</select>
 </mapper>

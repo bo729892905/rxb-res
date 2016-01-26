@@ -1,8 +1,8 @@
 package com.rxb.res.main;
 
-public class Test {
+public class TestIndex {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		String originalFilename="Lauterbrunnen, Switzerland.jpg";
 		if(!originalFilename.contains(".")){
 			System.out.println("名称不合法");

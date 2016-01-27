@@ -15,7 +15,7 @@ import javax.annotation.Resource;
 import java.util.HashSet;
 import java.util.Set;
 
-public class ShiroReaml extends AuthorizingRealm {
+public class MonitorRealm extends AuthorizingRealm {
 
 	@Resource
 	private UserService userService;
@@ -29,6 +29,7 @@ public class ShiroReaml extends AuthorizingRealm {
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection p) {
 		Set<String> roleNameSet = new HashSet<String>();
 		Set<String> permissionSet = new HashSet<String>();
+		permissionSet.add("test.do");
 
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo(roleNameSet);
 		info.setStringPermissions(permissionSet);
@@ -46,7 +47,6 @@ public class ShiroReaml extends AuthorizingRealm {
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 		String username=(String) token.getPrincipal();
 		User user = userService.getUserByUsername(username);
-
 		if (user == null) {
 			throw new AuthenticationException();
 		}

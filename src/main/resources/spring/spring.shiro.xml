@@ -4,21 +4,32 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
+    <!-- 缓存管理器 使用Ehcache实现 -->
     <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
         <property name="cacheManagerConfigFile" value="classpath:ehcache.xml"/>
     </bean>
-    <bean id="shiroRealm" class="com.rxb.res.interceptor.shiro.ShiroReaml"/>
+
+    <bean id="shiroRealm" class="com.rxb.res.interceptor.shiro.MonitorRealm"/>
+
+    <!-- 安全管理器 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="realm" ref="shiroRealm"/>
         <property name="cacheManager" ref="cacheManager"/>
     </bean>
+
+    <!-- 自定义鉴权拦截器 -->
+    <bean id="URLPermissionsFilter" class="com.rxb.res.filter.URLPermissionsFilter" />
+
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
-
         <property name="loginUrl" value="/" />
         <property name="successUrl" value="/" />
         <property name="unauthorizedUrl" value="/" />
-
+        <property name="filters">
+            <map>
+                <entry key="perms" value-ref="URLPermissionsFilter"/>
+            </map>
+        </property>
         <property name="filterChainDefinitions">
             <value>
                 /js/*      = anon
@@ -27,11 +38,13 @@
                 /images/*  = anon
 
                 /login*    = anon
-                /*         = user
                 /test*     = authc,perms
+                /upload*   = authc,perms
+                /**        = authc
             </value>
         </property>
     </bean>
+    <!-- Shiro生命周期处理器-->
     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
 
 </beans>

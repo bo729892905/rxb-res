@@ -1,4 +1,4 @@
-package com.rxb.res.common.util;
+package com.rxb.res.common;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

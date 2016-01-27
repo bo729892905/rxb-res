@@ -1,6 +1,6 @@
 package com.rxb.res.listener;
 
-import com.rxb.res.common.util.AppProperty;
+import com.rxb.res.common.AppProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.context.WebApplicationContext;

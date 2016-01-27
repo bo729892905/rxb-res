@@ -21,4 +21,10 @@ public interface UserDao {
      */
 	List<User> getUserList();
 
+	/**
+	 * 根据用户名获取用户
+	 * @param username
+     * @return
+     */
+	User getUserByUsername(String username);
 }

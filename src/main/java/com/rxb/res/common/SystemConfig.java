@@ -1,4 +1,4 @@
-package com.rxb.res.common.util;
+package com.rxb.res.common;
 
 /**
  * 系统配置

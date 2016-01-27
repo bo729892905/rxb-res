@@ -5,13 +5,14 @@ import com.aliyun.oss.OSSClient;
 import com.aliyun.oss.OSSException;
 import com.aliyun.oss.model.ObjectMetadata;
 import com.aliyun.oss.model.PutObjectResult;
+import com.rxb.res.common.SystemConfig;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.util.Date;
 
 /**
- * OSS工具类
+ * 阿里云OSS工具类
  * Created by rxb on 2016/1/17.
  */
 public class OSSObjectUtil {

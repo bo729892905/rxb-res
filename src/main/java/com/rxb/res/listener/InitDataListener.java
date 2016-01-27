@@ -1,7 +1,7 @@
 package com.rxb.res.listener;
 
-import com.rxb.res.common.util.AppProperty;
-import com.rxb.res.common.util.SystemConfig;
+import com.rxb.res.common.AppProperty;
+import com.rxb.res.common.SystemConfig;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 

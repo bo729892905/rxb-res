@@ -14,4 +14,8 @@
 	<select id="getUserList" resultType="com.rxb.res.entity.User">
 		select * from t_res_user
 	</select>
+
+	<select id="getUserByUsername" parameterType="String" resultType="com.rxb.res.entity.User">
+		select * from t_res_user where username=#{username}
+	</select>
 </mapper>

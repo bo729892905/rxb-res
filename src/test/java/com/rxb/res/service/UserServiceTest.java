@@ -1,5 +1,6 @@
 package com.rxb.res.service;
 
+import com.rxb.res.common.util.EncryptUtil;
 import com.rxb.res.entity.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,7 +16,7 @@ import java.util.List;
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:spring/application.spring.xml")
+@ContextConfiguration("classpath:spring/spring.context.xml")
 public class UserServiceTest {
 
     @Resource
@@ -25,7 +26,7 @@ public class UserServiceTest {
     public void testInsertUser() throws Exception {
         User user = new User();
         user.setUsername("test");
-        user.setPassword("123456");
+        user.setPassword(EncryptUtil.encryptMD5("123456"));
         user.setRealName("测试");
         user.setGender(0);
         user.setMobilePhone("123456");
@@ -42,5 +43,12 @@ public class UserServiceTest {
         for (User user : userList) {
             System.out.println(user.toString());
         }
+    }
+
+    @Test
+    public void testGetUserByUsername() throws Exception {
+        String username = "test";
+        User user = userService.getUserByUsername(username);
+        System.out.println(user.toString());
     }
 }

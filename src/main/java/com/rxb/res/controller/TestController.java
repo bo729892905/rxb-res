@@ -1,7 +1,11 @@
 package com.rxb.res.controller;
 
+import com.rxb.res.common.util.EncryptUtil;
 import com.rxb.res.common.util.OSSObjectUtil;
+import com.rxb.res.entity.User;
+import com.rxb.res.service.UserService;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
@@ -18,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,8 +33,6 @@ import java.util.Map;
 @Controller
 public class TestController {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
-	
-	private final static String BUCKET_NAME="rxb";
 
 	@RequestMapping(value = "test", method = RequestMethod.GET)
 	public ModelAndView test() {
@@ -41,21 +44,7 @@ public class TestController {
 		return new ModelAndView("test");
 	}
 
-	@RequestMapping(value = "login", method = RequestMethod.GET)
-	public ModelAndView login() {
-		SecurityUtils.getSecurityManager().logout(SecurityUtils.getSubject());
-
-		UsernamePasswordToken token = new UsernamePasswordToken("zhang", "123");
-		Subject subject = SecurityUtils.getSubject();
-		subject.login(token);
-		subject.getSession().setAttribute("userInfo", "zhang");
-
-		logger.debug("登录成功！");
-
-		return new ModelAndView("login");
-	}
-
-	@RequestMapping(value = "converter", method = RequestMethod.GET)
+	@RequestMapping(value = "converter")
 	public @ResponseBody Map<String, Object> testConverter() {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("username", "admin");

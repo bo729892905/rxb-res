@@ -2,6 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.rxb.res.dao.UserDao">
 
+	<!-- 以下两个<cache>标签二选一,第一个可以输出日志,第二个不输出日志 -->
+	<cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
+	<!-- <cache type="org.mybatis.caches.ehcache.EhcacheCache"/> -->
+
 	<!-- 新建用户 -->
 	<insert id="insertUser" useGeneratedKeys="true" keyProperty="id" parameterType="com.rxb.res.entity.User">
 		insert into t_res_user
@@ -15,7 +19,7 @@
 		select * from t_res_user
 	</select>
 
-	<select id="getUserByUsername" parameterType="String" resultType="com.rxb.res.entity.User">
+	<select id="getUserByUsername" parameterType="String" resultType="com.rxb.res.entity.User" useCache="true">
 		select * from t_res_user where username=#{username}
 	</select>
 </mapper>

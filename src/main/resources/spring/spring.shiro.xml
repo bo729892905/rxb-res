@@ -6,14 +6,21 @@
 
     <!-- 缓存管理器 使用Ehcache实现 -->
     <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
-        <property name="cacheManagerConfigFile" value="classpath:ehcache.xml"/>
+        <property name="cacheManagerConfigFile" value="classpath:shiro-ehcache.xml"/>
     </bean>
 
-    <bean id="shiroRealm" class="com.rxb.res.interceptor.shiro.MonitorRealm"/>
+    <!-- Realm实现 -->
+    <bean id="monitorRealm" class="com.rxb.res.interceptor.shiro.MonitorRealm">
+        <property name="cachingEnabled" value="true"/>
+        <property name="authenticationCachingEnabled" value="true"/>
+        <property name="authenticationCacheName" value="authenticationCache"/>
+        <property name="authorizationCachingEnabled" value="true"/>
+        <property name="authorizationCacheName" value="authorizationCache"/>
+    </bean>
 
     <!-- 安全管理器 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-        <property name="realm" ref="shiroRealm"/>
+        <property name="realm" ref="monitorRealm"/>
         <property name="cacheManager" ref="cacheManager"/>
     </bean>
 

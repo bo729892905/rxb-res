@@ -12,6 +12,8 @@
 	<!-- 自动扫描指定包下的所有Controller控制器 -->
 	<context:component-scan base-package="com.rxb.res.controller" />
 
+	<mvc:default-servlet-handler/>
+
 	<!-- 启动Spring MVC注解功能,完成请求和注解POJO的映射 -->
 	<mvc:annotation-driven>
 		<mvc:message-converters register-defaults="true">

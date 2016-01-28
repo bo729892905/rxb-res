@@ -10,12 +10,16 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.annotation.Resource;
 import java.util.HashSet;
 import java.util.Set;
 
 public class MonitorRealm extends AuthorizingRealm {
+
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Resource
 	private UserService userService;
@@ -27,6 +31,8 @@ public class MonitorRealm extends AuthorizingRealm {
      */
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection p) {
+		logger.info("doGetAuthorizationInfo....principals: "+p.toString());
+
 		Set<String> roleNameSet = new HashSet<String>();
 		Set<String> permissionSet = new HashSet<String>();
 		permissionSet.add("test.do");
@@ -45,6 +51,8 @@ public class MonitorRealm extends AuthorizingRealm {
      */
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+		logger.info("doGetAuthenticationInfo...token: "+token.toString());
+
 		String username=(String) token.getPrincipal();
 		User user = userService.getUserByUsername(username);
 		if (user == null) {

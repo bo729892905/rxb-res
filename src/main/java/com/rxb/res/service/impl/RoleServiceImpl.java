@@ -29,4 +29,9 @@ public class RoleServiceImpl implements RoleService {
     public List<Role> getRoleByUserId(String userId) {
         return roleDao.getRoleByUserId(userId);
     }
+
+    @Override
+    public int setPermissionsToRole(String roleId, List<String> perIdList) {
+        return roleDao.setPermissionsToRole(roleId, perIdList);
+    }
 }

@@ -22,4 +22,12 @@ public interface RoleService {
      * @return
      */
     List<Role> getRoleByUserId(String userId);
+
+    /**
+     * 给角色设置权限
+     * @param roleId
+     * @param perIdList
+     * @return
+     */
+    int setPermissionsToRole(String roleId, List<String> perIdList);
 }

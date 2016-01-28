@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.rxb.res.dao.RoleDao">
+<mapper namespace="com.rxb.res.dao.PermissionDao">
     <!-- 配置缓存 -->
     <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
 
@@ -9,7 +9,7 @@
         INSERT INTO t_res_permission
         (id, url, name, per_type, parent_id, visible, remark)
         VALUES
-        (#{id},#{url},#{name},#{per_type},#{parent_id},#{visible},#{remark})
+        (#{id},#{url},#{name},#{perType},#{parentId},#{visible},#{remark})
     </insert>
 
     <!-- 根据角色获取权限列表 -->

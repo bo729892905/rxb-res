@@ -16,7 +16,7 @@ public class Permission extends BaseEntity {
     /**
      * 权限类型
      */
-    private Integer preType;
+    private Integer perType;
     /**
      * 上级权限id
      */
@@ -24,11 +24,11 @@ public class Permission extends BaseEntity {
     /**
      * 是否可见
      */
-    private Boolean visible;
+    private Boolean visible = true;
     /**
      * 描述
      */
-    private Boolean remark;
+    private String remark;
 
     public String getName() {
         return name;
@@ -46,12 +46,12 @@ public class Permission extends BaseEntity {
         this.url = url;
     }
 
-    public Integer getPreType() {
-        return preType;
+    public Integer getPerType() {
+        return perType;
     }
 
-    public void setPreType(Integer preType) {
-        this.preType = preType;
+    public void setPerType(Integer perType) {
+        this.perType = perType;
     }
 
     public String getParentId() {
@@ -70,11 +70,11 @@ public class Permission extends BaseEntity {
         this.visible = visible;
     }
 
-    public Boolean getRemark() {
+    public String getRemark() {
         return remark;
     }
 
-    public void setRemark(Boolean remark) {
+    public void setRemark(String remark) {
         this.remark = remark;
     }
 }

@@ -22,4 +22,12 @@
         WHERE ur.user_id=#{userId}
     </select>
 
+    <insert id="setPermissionsToRole">
+        INSERT INTO t_res_role_permission
+          (role_id, permission_id)
+        VALUES
+        <foreach collection="perIdList" item="perId" separator=",">
+            (#{roleId}, #{perId})
+        </foreach>
+    </insert>
 </mapper>

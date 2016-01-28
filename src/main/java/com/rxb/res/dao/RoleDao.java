@@ -1,6 +1,7 @@
 package com.rxb.res.dao;
 
 import com.rxb.res.entity.Role;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -11,7 +12,6 @@ import java.util.List;
  */
 @Repository
 public interface RoleDao {
-
     /**
      * 新增用户
      * @param role
@@ -25,4 +25,13 @@ public interface RoleDao {
      * @return
      */
     List<Role> getRoleByUserId(String userId);
+
+    /**
+     * 为角色设置权限
+     *
+     * @param roleId
+     * @param perIdList
+     * @return
+     */
+    int setPermissionsToRole(@Param("roleId") String roleId, @Param("perIdList") List<String> perIdList);
 }

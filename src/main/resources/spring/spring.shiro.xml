@@ -31,7 +31,7 @@
         <property name="securityManager" ref="securityManager"/>
         <property name="loginUrl" value="/" />
         <property name="successUrl" value="/" />
-        <property name="unauthorizedUrl" value="/" />
+        <property name="unauthorizedUrl" value="/errors/403.jsp" />
         <property name="filters">
             <map>
                 <entry key="perms" value-ref="URLPermissionsFilter"/>

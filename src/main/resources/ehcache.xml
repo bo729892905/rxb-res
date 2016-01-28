@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ehcache name="">
-    <diskStore path="java.io.tmpdir" /> <!-- 缓存存放目录(此目录为放入系统默认缓存目录),也可以是”D:/cache“ java.io.tmpdir -->
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../config/ehcache.xsd" updateCheck="false">
+    <!--
+    此配置文件从ehcache-core-2.6.9.jar根目录中拷贝而来（ehcache-failsafe.xml），在第一行增加了属性updateCheck="false"，
+    用于禁用项目启动时ehcache更新检查，其他配置可根据需要修改。
+    -->
+
+    <!-- 缓存存放目录(此目录为放入系统默认缓存目录),也可以是”D:/cache“ java.io.tmpdir -->
+    <diskStore path="java.io.tmpdir" />
+
     <defaultCache
-            maxElementsInMemory="10000"  
-            eternal="false"  
-            timeToIdleSeconds="120"  
-            timeToLiveSeconds="120"  
-            overflowToDisk="true"  
-            maxElementsOnDisk="10000000"  
-            diskPersistent="false"  
-            diskExpiryThreadIntervalSeconds="120"  
-            memoryStoreEvictionPolicy="LRU"  
-            />
+            maxElementsInMemory="10000"
+            eternal="false"
+            timeToIdleSeconds="120"
+            timeToLiveSeconds="120"
+            overflowToDisk="true"
+            maxElementsOnDisk="10000000"
+            diskPersistent="false"
+            diskExpiryThreadIntervalSeconds="120"
+            memoryStoreEvictionPolicy="LRU"
+    />
       <!--  
     name：Cache的唯一标识  
     maxElementsInMemory：内存中最大缓存对象数  

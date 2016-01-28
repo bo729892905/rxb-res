@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.rxb.res.dao.UserDao">
-
 	<!-- 以下两个<cache>标签二选一,第一个可以输出日志,第二个不输出日志 -->
 	<cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
 	<!-- <cache type="org.mybatis.caches.ehcache.EhcacheCache"/> -->
@@ -19,7 +18,17 @@
 		select * from t_res_user
 	</select>
 
+	<!-- 根据用户名查询用户信息 -->
 	<select id="getUserByUsername" parameterType="String" resultType="com.rxb.res.entity.User" useCache="true">
 		select * from t_res_user where username=#{username}
 	</select>
+
+	<insert id="setRolesToUser">
+		INSERT INTO t_res_user_role
+			(user_id, role_id)
+		VALUES
+		<foreach collection="roleIdList" item="roleId" separator=",">
+			(#{userId},#{roleId})
+		</foreach>
+	</insert>
 </mapper>

@@ -1,6 +1,7 @@
 package com.rxb.res.dao;
 
 import com.rxb.res.entity.User;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -27,4 +28,12 @@ public interface UserDao {
      * @return
      */
 	User getUserByUsername(String username);
+
+	/**
+	 * 给用户添加角色
+	 * @param userId
+	 * @param roleIdList
+     * @return
+     */
+	int setRolesToUser(@Param("userId") String userId, @Param("roleIdList") List<String> roleIdList);
 }

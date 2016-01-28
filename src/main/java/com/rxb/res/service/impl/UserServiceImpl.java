@@ -16,6 +16,7 @@ public class UserServiceImpl implements UserService {
 	private UserDao userDao;
 
 	@Transactional
+	@Override
 	public int insertUser(User user) {
 		return userDao.insertUser(user);
 	}
@@ -30,4 +31,8 @@ public class UserServiceImpl implements UserService {
 		return userDao.getUserByUsername(username);
 	}
 
+	@Override
+	public int setRolesToUser(String userId, List<String> roleIdList) {
+		return userDao.setRolesToUser(userId,roleIdList);
+	}
 }

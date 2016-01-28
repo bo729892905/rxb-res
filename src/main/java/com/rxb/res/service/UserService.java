@@ -24,4 +24,12 @@ public interface UserService {
 	 * @return
 	 */
 	User getUserByUsername(String username);
+
+	/**
+	 * 给用户设置角色
+	 * @param userId
+	 * @param roleIdList
+     * @return
+     */
+	int setRolesToUser(String userId, List<String> roleIdList);
 }

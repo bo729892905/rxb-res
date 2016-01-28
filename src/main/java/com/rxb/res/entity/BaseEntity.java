@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.UUID;
 
 /**
+ * 基础实体类
  * Created by rxb on 2016/1/26.
  */
 public class BaseEntity implements Serializable {

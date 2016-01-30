@@ -30,23 +30,44 @@
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 
+	<!-- 注意：如果为DispatcherServlet指定多个ViewResolver的话，不要给予InternalResourceViewResolver以及其他UrlBasedViewResolver子类过高的优先级
+		因为这些ViewResolver即使找不到相应的视图，也不会返回null以给我们轮询下一个ViewResolver的机会，这样，我们所指定的其他ViewResolver实际上
+		就形同虚设。合理的处理方式是，给予ResourceBundleViewResolver或者XmlViewResolver这种能够通过返回null以表明无法找到相应视图的ViewResolver
+		较高的优先级，而只是将InternalResourceViewResolver（或者其他类似行为的ViewResolver）添加为最低优先级ViewResolver，以作为DispatcherServlet
+		的后备查找对象。 -->
+
 	<!-- 配置资源视图处理器，为模型视图添加后缀 -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
 		p:prefix="WEB-INF/page/" p:suffix=".jsp">
-		<property name="order" value="0"/>
 	</bean>
 
 	<!-- 配置FreeMarker视图处理器 -->
 	<bean
 		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver"
-		p:prefix="WEB-INF/template/" p:suffix=".ftl">
+		p:prefix="/" p:suffix=".ftl">
 		<property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"/>
 		<property name="contentType" value="text/html;charset=UTF-8"/>
 		<property name="exposeRequestAttributes" value="true" />
 		<property name="exposeSessionAttributes" value="true" />
 		<property name="exposeSpringMacroHelpers" value="true" />
-		<property name="order" value="1"/>
+		<property name="order" value="0"/>
+	</bean>
+
+	<!-- freemarker的配置 -->
+	<bean id="freemarkerConfig"
+		  class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<property name="templateLoaderPath" value="/template/" />
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="freemarkerSettings">
+			<props>
+				<prop key="template_update_delay">10</prop>
+				<prop key="locale">zh_CN</prop>
+				<prop key="datetime_format">yyyy-MM-dd</prop>
+				<prop key="date_format">yyyy-MM-dd</prop>
+				<prop key="number_format">#.##</prop>
+			</props>
+		</property>
 	</bean>
 
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

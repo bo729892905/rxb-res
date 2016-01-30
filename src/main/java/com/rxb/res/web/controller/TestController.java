@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
@@ -104,12 +103,5 @@ public class TestController {
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public @ResponseBody String testConverter(Map<String,Object> map) {
 		return "success";
-	}
-
-	@RequestMapping(value = "hello")
-	public ModelAndView testFreemarker(HttpServletRequest request) {
-		ModelAndView mav=new ModelAndView("hello");
-		mav.addObject("name", "tom");
-		return mav;
 	}
 }

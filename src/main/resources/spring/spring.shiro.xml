@@ -42,7 +42,7 @@
                 /login*    = anon
                 <!--/test*     = authc,perms
                 /upload*   = authc,perms-->
-                /**        = authc
+                /**        = anon
             </value>
         </property>
     </bean>

@@ -25,7 +25,7 @@
     </bean>
 
     <!-- 自定义鉴权拦截器 -->
-    <bean id="URLPermissionsFilter" class="com.rxb.res.filter.URLPermissionsFilter" />
+    <!--<bean id="URLPermissionsFilter" class="com.rxb.res.filter.URLPermissionsFilter" />-->
 
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
@@ -39,11 +39,6 @@
         </property>-->
         <property name="filterChainDefinitions">
             <value>
-                /js/*      = anon
-                /css/*     = anon
-                /img/*     = anon
-                /images/*  = anon
-
                 /login*    = anon
                 <!--/test*     = authc,perms
                 /upload*   = authc,perms-->

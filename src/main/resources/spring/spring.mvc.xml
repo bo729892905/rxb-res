@@ -12,6 +12,9 @@
 	<!-- 自动扫描指定包下的所有Controller控制器 -->
 	<context:component-scan base-package="com.rxb.res.web.controller" />
 
+	<!-- 将无法mapping到Controller的path交给default servlet handler处理 -->
+	<mvc:default-servlet-handler />
+
 	<!-- 启动Spring MVC注解功能,完成请求和注解POJO的映射 -->
 	<mvc:annotation-driven>
 		<mvc:message-converters register-defaults="true">
@@ -27,10 +30,23 @@
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 
-	<!-- 配置资源视图处理器，为模型视图添加前后缀 -->
+	<!-- 配置资源视图处理器，为模型视图添加后缀 -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
 		p:prefix="WEB-INF/page/" p:suffix=".jsp">
+		<property name="order" value="0"/>
+	</bean>
+
+	<!-- 配置FreeMarker视图处理器 -->
+	<bean
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver"
+		p:prefix="WEB-INF/template/" p:suffix=".ftl">
+		<property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"/>
+		<property name="contentType" value="text/html;charset=UTF-8"/>
+		<property name="exposeRequestAttributes" value="true" />
+		<property name="exposeSessionAttributes" value="true" />
+		<property name="exposeSpringMacroHelpers" value="true" />
+		<property name="order" value="1"/>
 	</bean>
 
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

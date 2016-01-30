@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
@@ -52,15 +53,17 @@ public class TestController {
 	public ResponseEntity<byte[]> download() throws IOException {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-		headers.setContentDispositionFormData("attachment", "dict.txt");
-		byte[] b = "hello".getBytes();
+		String name = new String("测试".getBytes(),"iso-8859-1");
+		headers.setContentDispositionFormData("attachment", name + ".txt");
+		byte[] b = "hello!你好".getBytes();
 
 		return new ResponseEntity<byte[]>(b, headers, HttpStatus.CREATED);
 	}
 
 	@RequestMapping(value = "download1", produces = { "application/octet-stream;charset=utf-8" })
 	public @ResponseBody byte[] download1(HttpServletResponse response) throws IOException {
-		response.setHeader("Content-Disposition", "attachment;filename=dict.txt");
+		String name = new String("测试".getBytes(),"iso-8859-1");
+		response.setHeader("Content-Disposition", "attachment;filename=\""+name+".txt\"");
 		return "hello".getBytes();
 	}
 
@@ -101,5 +104,12 @@ public class TestController {
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public @ResponseBody String testConverter(Map<String,Object> map) {
 		return "success";
+	}
+
+	@RequestMapping(value = "hello")
+	public ModelAndView testFreemarker(HttpServletRequest request) {
+		ModelAndView mav=new ModelAndView("hello");
+		mav.addObject("name", "tom");
+		return mav;
 	}
 }

@@ -5,6 +5,8 @@ import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.junit.Test;
 
+import java.nio.charset.Charset;
+
 /**
  * Created by rxb on 2016/1/26.
  */
@@ -12,6 +14,12 @@ public class SaltTest {
     String str = "hello";
     String salt = "123";
     String salt1 = "456";
+
+    @Test
+    public void test() {
+        System.out.println(System.getProperty("file.encoding"));
+        System.out.println(Charset.defaultCharset());
+    }
 
     @Test
     public void testMd5() {

@@ -3,12 +3,15 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns="http://www.springframework.org/schema/beans"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
         http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context.xsd">
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
     <!-- Root Context: defines shared resources visible to all other web components -->
 
     <!-- <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -25,7 +28,12 @@
     <context:property-placeholder location="classpath:/application.properties"/>
 
     <!--使用annotation 自动注册bean,并保证@Required,@Autowired的属性被注入 -->
-    <context:component-scan base-package="com.rxb.res"/>
+    <context:component-scan base-package="com.rxb.res">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <!-- 开启AOP监听 只对当前配置文件有效 -->
+    <aop:aspectj-autoproxy expose-proxy="true"/>
 
     <!-- 配置数据源 -->
     <bean id="dataSource" class="org.apache.ibatis.datasource.pooled.PooledDataSource">
@@ -58,7 +66,6 @@
     <bean class="com.rxb.res.listener.InitDataListener"/>
 
     <import resource="classpath:spring/spring.shiro.xml"/>
-    <import resource="classpath:spring/spring.aop.xml"/>
     <!--<import resource="classpath:spring/spring.task.xml"/>-->
 
 </beans>

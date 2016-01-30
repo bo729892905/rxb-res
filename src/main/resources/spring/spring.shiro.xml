@@ -32,11 +32,11 @@
         <property name="loginUrl" value="/" />
         <property name="successUrl" value="/" />
         <property name="unauthorizedUrl" value="/errors/403.jsp" />
-        <property name="filters">
+        <!--<property name="filters">
             <map>
                 <entry key="perms" value-ref="URLPermissionsFilter"/>
             </map>
-        </property>
+        </property>-->
         <property name="filterChainDefinitions">
             <value>
                 /js/*      = anon
@@ -45,13 +45,12 @@
                 /images/*  = anon
 
                 /login*    = anon
-                /test*     = authc,perms
-                /upload*   = authc,perms
+                <!--/test*     = authc,perms
+                /upload*   = authc,perms-->
                 /**        = authc
             </value>
         </property>
     </bean>
     <!-- Shiro生命周期处理器-->
     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
-
 </beans>

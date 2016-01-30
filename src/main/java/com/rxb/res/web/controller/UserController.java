@@ -1,4 +1,4 @@
-package com.rxb.res.controller;
+package com.rxb.res.web.controller;
 
 import com.rxb.res.common.util.EncryptUtil;
 import com.rxb.res.entity.User;
@@ -39,7 +39,7 @@ public class UserController {
             subject.login(token);
         } catch (AuthenticationException e) {
             logger.debug("用户名或密码错误！");
-            return new ModelAndView("/login");
+            return new ModelAndView("login");
         }
         User user = userService.getUserByUsername(username);
         subject.getSession().setAttribute(SESSION_USER, user);

@@ -18,7 +18,7 @@ DROP TABLE IF EXISTS `rxb_res`.`t_res_user` ;
 
 CREATE TABLE IF NOT EXISTS `rxb_res`.`t_res_user` (
   `id` VARCHAR(32) NOT NULL DEFAULT '',
-  `username` VARCHAR(32) NOT NULL COMMENT '用户名',
+  `name` VARCHAR(32) NOT NULL COMMENT '用户名',
   `password` VARCHAR(32) NOT NULL COMMENT '密码',
   `real_name` VARCHAR(32) NULL COMMENT '真实姓名',
   `gender` INT(1) NULL COMMENT '性别',
@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `rxb_res`.`t_res_user` (
   `locked` TINYINT(1) NULL DEFAULT 0 COMMENT '是否锁定',
   `register_date` DATETIME NULL COMMENT '注册时间',
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `username_UNIQUE` (`username` ASC))
+  UNIQUE INDEX `username_UNIQUE` (`name` ASC))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 

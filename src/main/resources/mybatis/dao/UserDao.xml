@@ -8,9 +8,9 @@
 	<!-- 新建用户 -->
 	<insert id="insertUser" useGeneratedKeys="true" keyProperty="id" parameterType="com.rxb.res.entity.User">
 		insert into t_res_user
-		(id,username,password,real_name,gender,mobile_phone,email,salt,locked,register_date)
+		(id,name,password,real_name,gender,mobile_phone,email,salt,locked,register_date)
 		values 
-		(#{id},#{username},#{password},#{realName},#{gender},#{mobilePhone},#{email},#{salt},#{locked},#{registerDate})
+		(#{id},#{name},#{password},#{realName},#{gender},#{mobilePhone},#{email},#{salt},#{locked},#{registerDate})
 	</insert>
 
 	<!-- 获取用户列表 -->
@@ -20,7 +20,7 @@
 
 	<!-- 根据用户名查询用户信息 -->
 	<select id="getUserByUsername" parameterType="String" resultType="com.rxb.res.entity.User" useCache="true">
-		select * from t_res_user where username=#{username}
+		select * from t_res_user where name=#{name}
 	</select>
 
 	<insert id="setRolesToUser">

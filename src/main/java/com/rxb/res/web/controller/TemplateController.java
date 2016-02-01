@@ -1,5 +1,6 @@
 package com.rxb.res.web.controller;
 
+import com.rxb.res.entity.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,9 @@ public class TemplateController {
         mav.addObject("name", reqName);
         List<String> itemList= Arrays.asList("test1","test2");
         mav.addObject("itemList", itemList);
+        User user = new User();
+        user.setUsername("tom123");
+        mav.addObject("user", user);
         return mav;
     }
 }

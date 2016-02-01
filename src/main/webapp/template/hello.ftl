@@ -4,5 +4,8 @@
 </head>
 <body>
 ${name}
+<#list itemList as item>
+    <a href="${item}.html">${item}<a>|
+</#list>
 </body>
 </html>

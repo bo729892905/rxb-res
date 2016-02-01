@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>springMVC test</title>
+<title>springMVC 测试</title>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 </head>
 <body>

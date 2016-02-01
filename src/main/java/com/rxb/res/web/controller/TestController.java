@@ -42,7 +42,7 @@ public class TestController {
 	@RequiresPermissions("converter")
 	@RequestMapping(value = "converter")
 	public @ResponseBody Map<String, Object> testConverter() {
-		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> map = new HashMap<>();
 		map.put("username", "admin");
 		map.put("age", 24);
 		return map;
@@ -56,7 +56,7 @@ public class TestController {
 		headers.setContentDispositionFormData("attachment", name + ".txt");
 		byte[] b = "hello!你好".getBytes();
 
-		return new ResponseEntity<byte[]>(b, headers, HttpStatus.CREATED);
+		return new ResponseEntity<>(b, headers, HttpStatus.CREATED);
 	}
 
 	@RequestMapping(value = "download1", produces = { "application/octet-stream;charset=utf-8" })
@@ -102,6 +102,7 @@ public class TestController {
 	
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public @ResponseBody String testConverter(Map<String,Object> map) {
+		map.put("name", "tom");
 		return "success";
 	}
 }

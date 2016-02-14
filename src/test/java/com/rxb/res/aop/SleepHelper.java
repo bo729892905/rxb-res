@@ -4,6 +4,7 @@ import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
 /**
+ * 注解aop
  * Created by rxb on 2016/1/29.
  */
 @Aspect

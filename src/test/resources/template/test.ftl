@@ -84,4 +84,4 @@ ${type}
     ${bookname}
 </#list>
 </#macro>
-<@book booklist=["spring","j2ee"] type="java" />、
+<@book booklist=["spring","j2ee"] type="java" />

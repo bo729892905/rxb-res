@@ -54,6 +54,7 @@
     <bean class="com.rxb.res.listener.InitDataListener"/>
 
     <import resource="classpath:spring/spring.shiro.xml"/>
+    <import resource="classpath:spring/spring.javamelody.xml"/>
     <!--<import resource="classpath:spring/spring.task.xml"/>-->
 
 </beans>

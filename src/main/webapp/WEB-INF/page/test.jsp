@@ -11,9 +11,9 @@
 <body>
 <h2>success!</h2>
 
-<a href="#/test1">test1</a>
-<a href="#/test2">test2</a>
-<a href="#/test3">test3</a>
+<a href="/test1">test1</a>
+<a href="/test2">test2</a>
+<a href="/test3">test3</a>
 
 <div id="hello"></div>
 

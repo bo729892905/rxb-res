@@ -41,7 +41,9 @@
             <value>
                 /css/**    =anon
                 /js/**     =anon
+                /font-awesome/**     =anon
                 /images/** =anon
+                /img/** =anon
                 /errors/** =anon
                 /libs/**   =anon
                 /login*    = anon

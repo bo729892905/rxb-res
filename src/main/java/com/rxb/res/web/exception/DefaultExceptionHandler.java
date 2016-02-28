@@ -9,13 +9,14 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
+ * controller默认异常处理
  * Created by rxb on 2016/1/29.
  */
 @ControllerAdvice
 public class DefaultExceptionHandler {
     /**
      * 未授权异常处理
-     * @return
+     * @return ModelAndView
      */
     @ExceptionHandler({UnauthorizedException.class})
     @ResponseStatus(HttpStatus.UNAUTHORIZED)

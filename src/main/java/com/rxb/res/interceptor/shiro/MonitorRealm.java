@@ -25,61 +25,61 @@ import java.util.Set;
 
 public class MonitorRealm extends AuthorizingRealm {
 
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	@Resource
-	private UserService userService;
-	@Resource
-	private RoleService roleService;
-	@Resource
-	private PermissionService permissionService;
+    @Resource
+    private UserService userService;
+    @Resource
+    private RoleService roleService;
+    @Resource
+    private PermissionService permissionService;
 
-	/**
-	 * 重写授权方法
-	 * @param p
-	 * @return
+    /**
+     * 重写授权方法
+     *
+     * @param p PrincipalCollection
+     * @return AuthorizationInfo
      */
-	@Override
-	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection p) {
-		logger.info("doGetAuthorizationInfo....principals: "+p.toString());
-		User user = (User) SecurityUtils.getSubject().getSession().getAttribute("currentUser");
+    @Override
+    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection p) {
+        logger.info("doGetAuthorizationInfo....principals: " + p.toString());
+        User user = (User) SecurityUtils.getSubject().getSession().getAttribute("currentUser");
 
-		Set<String> roleNameSet = new HashSet<>();
-		Set<String> permissionSet = new HashSet<>();
+        Set<String> roleNameSet = new HashSet<>();
+        Set<String> permissionSet = new HashSet<>();
 
-		//获取用户权限
-		List<Role> roleList = roleService.getRoleByUserId(user.getId());
-		for (Role role : roleList) {
-			roleNameSet.add(role.getName());
-			List<Permission> permissionList = permissionService.getPermissionByRole(role.getId());
-			for (Permission permission : permissionList) {
-				permissionSet.add(permission.getUrl());
-			}
-		}
+        //获取用户权限
+        List<Role> roleList = roleService.getRoleByUserId(user.getId());
+        for (Role role : roleList) {
+            roleNameSet.add(role.getName());
+            List<Permission> permissionList = permissionService.getPermissionByRole(role.getId());
+            permissionList.forEach(e -> permissionSet.add(e.getUrl()));
+        }
 
-		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo(roleNameSet);
-		info.setStringPermissions(permissionSet);
+        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo(roleNameSet);
+        info.setStringPermissions(permissionSet);
 
-		return info;
-	}
+        return info;
+    }
 
-	/**
-	 * 重写认证方法
-	 * @param token
-	 * @return
-	 * @throws AuthenticationException
+    /**
+     * 重写认证方法
+     *
+     * @param token AuthenticationToken
+     * @return AuthenticationInfo
+     * @throws AuthenticationException
      */
-	@Override
-	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-		logger.info("doGetAuthenticationInfo...token: "+token.toString());
+    @Override
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+        logger.info("doGetAuthenticationInfo...token: " + token.toString());
 
-		String username=(String) token.getPrincipal();
-		User user = userService.getUserByUsername(username);
-		if (user == null) {
-			throw new AuthenticationException();
-		}
+        String username = (String) token.getPrincipal();
+        User user = userService.getUserByUsername(username);
+        if (user == null) {
+            throw new AuthenticationException();
+        }
 
-		return new SimpleAuthenticationInfo(username, user.getPassword(), getName());
-	}
+        return new SimpleAuthenticationInfo(username, user.getPassword(), getName());
+    }
 
 }

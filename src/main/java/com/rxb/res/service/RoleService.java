@@ -11,23 +11,23 @@ import java.util.List;
 public interface RoleService {
     /**
      * 新增用户
-     * @param role
-     * @return
+     * @param role 角色
+     * @return int
      */
     int insertRole(Role role);
 
     /**
      * 根据用户查询角色
-     * @param userId
-     * @return
+     * @param userId 用户id
+     * @return List<Role>
      */
     List<Role> getRoleByUserId(String userId);
 
     /**
      * 给角色设置权限
-     * @param roleId
-     * @param perIdList
-     * @return
+     * @param roleId 角色id
+     * @param perIdList 权限id列表
+     * @return int
      */
     int setPermissionsToRole(String roleId, List<String> perIdList);
 }

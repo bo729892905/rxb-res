@@ -13,15 +13,15 @@ import java.util.List;
 public interface PermissionDao {
     /**
      * 新建权限
-     * @param permission
-     * @return
+     * @param permission Permission
+     * @return int
      */
     int insertPermission(Permission permission);
 
     /**
      * 根据角色id获取权限
-     * @param roleId
-     * @return
+     * @param roleId 角色id
+     * @return List<Permission>
      */
     List<Permission> getPermissionByRole(String roleId);
 }

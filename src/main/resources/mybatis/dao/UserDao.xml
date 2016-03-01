@@ -20,7 +20,7 @@
 
 	<!-- 根据用户名查询用户信息 -->
 	<select id="getUserByUsername" parameterType="String" resultType="com.rxb.res.entity.User" useCache="true">
-		select * from t_res_user where name=#{name}
+		select * from t_res_user where username=#{username}
 	</select>
 
 	<insert id="setRolesToUser">
